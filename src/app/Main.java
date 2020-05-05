@@ -8,18 +8,20 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     private static ApplicationRunner appRunner = new ApplicationRunner();
+    Stage window;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        window = primaryStage;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = fxmlLoader.load();
         Controller controller = fxmlLoader.getController();
         PassableServices services = new PassableServices(appRunner);
         controller.setupCharacterList(services);
         controller.initialize();
-        primaryStage.setTitle("Prototpye Start Screen");
-        primaryStage.setScene(new Scene(root, 1000, 700));
-        primaryStage.show();
+        window.setTitle("Prototpye Start Screen");
+        window.setScene(new Scene(root, 1000, 700));
+        window.show();
     }
 
     public static void main(String[] args) {
