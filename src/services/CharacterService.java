@@ -23,7 +23,7 @@ public class CharacterService {
         return false;
     }
 
-    public ObservableList<String> getChatacters(){
+    public ObservableList<String> getCharacters(){
         ArrayList<String> characters = new ArrayList<String>();
         String characterQuery = "SELECT name FROM characters";
 

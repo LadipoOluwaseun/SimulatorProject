@@ -1,27 +1,25 @@
 package app;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import services.CharacterService;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    // prepareScene
     public Button beginMatchButton;
     public Button viewTeamBtn;
     public ChoiceBox p1CharacterSelect;
@@ -31,17 +29,18 @@ public class Controller implements Initializable {
     public TextField p1Teamname;
     public TextField p2Teamname;
     ObservableList<String> characterList;
+
+    // teamScene
     public Button viewPrepareBtn;
+
     public Controller() {
         //Cannot have fields in controller
     }
 
     @FXML
     public void initialize() {
-        //At the moment the Choicebox will not display data
         p1CharacterSelect.getItems().addAll(characterList);
         p2CharacterSelect.getItems().addAll(characterList);
-        System.out.println(p1CharacterSelect.getItems().toString());
     }
 
     public void setBeginMatchButton(ActionEvent actionEvent){
@@ -49,31 +48,55 @@ public class Controller implements Initializable {
     }
 
     public void setupCharacterList(PassableServices services) {
-        characterList = services.applicationRunner.characterService.getChatacters();
+        characterList = services.applicationRunner.characterService.getCharacters();
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
-    // Switches the current scene from the 'preparing for battle' scene (prepareScene) to
-    // the 'view/edit your teams' scene (teamScene)
-    public void viewTeams(ActionEvent event) throws IOException {
-        changeView(event, "teamScene.fxml");
+    // methods for switching scenes
+    public void viewTeam(ActionEvent event) throws IOException {
+        changeScene(event, "teamScene.fxml");
     }
 
     public void viewPrepare(ActionEvent event) throws IOException {
-        changeView(event, "sample.fxml");
+        changeScene(event, "prepareScene.fxml");
     }
 
-    public void changeView(ActionEvent event, String fxml) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(fxml));
-        Scene prepareScene = new Scene(loader.load());
-        Stage window = new Stage();
-        window.setScene(prepareScene);
-        window.show();
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+    public void changeScene(ActionEvent event, String fxml) throws IOException {
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(getClass().getResource(fxml));
+//        Scene prepareScene = new Scene(loader.load());
+//        Stage window = new Stage();
+//        window.setScene(prepareScene);
+//        window.show();
+//        ((Node)(event.getSource())).getScene().getWindow().hide();
+
+//        Stage stage = new Stage();
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(getClass().getResource(fxml));
+//        loader.setController(this);
+//        Parent root = null;
+//        root = loader.load();
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+
+//        stage.show();
+//        ((Node)(event.getSource())).getScene().getWindow().hide();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        loader.setController(this);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+    }
+
+    // deprecated
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("called parameterized initialize!");
+        System.out.println(characterList.toString());
+        p1CharacterSelect.getItems().addAll(characterList);
+        p2CharacterSelect.getItems().addAll(characterList);
     }
 }
