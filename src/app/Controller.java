@@ -37,8 +37,7 @@ public class Controller implements Initializable {
         //Cannot have fields in controller
     }
 
-    @FXML
-    public void initialize() {
+    public void initialize(URL location, ResourceBundle resources) {
         p1CharacterSelect.getItems().addAll(characterList);
         p2CharacterSelect.getItems().addAll(characterList);
     }
@@ -61,26 +60,6 @@ public class Controller implements Initializable {
     }
 
     public void changeScene(ActionEvent event, String fxml) throws IOException {
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource(fxml));
-//        Scene prepareScene = new Scene(loader.load());
-//        Stage window = new Stage();
-//        window.setScene(prepareScene);
-//        window.show();
-//        ((Node)(event.getSource())).getScene().getWindow().hide();
-
-//        Stage stage = new Stage();
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource(fxml));
-//        loader.setController(this);
-//        Parent root = null;
-//        root = loader.load();
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-
-//        stage.show();
-//        ((Node)(event.getSource())).getScene().getWindow().hide();
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         loader.setController(this);
         Parent root = loader.load();
@@ -90,13 +69,5 @@ public class Controller implements Initializable {
         stage.setScene(scene);
         stage.show();
         ((Node) (event.getSource())).getScene().getWindow().hide();
-    }
-
-    // deprecated
-    public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("called parameterized initialize!");
-        System.out.println(characterList.toString());
-        p1CharacterSelect.getItems().addAll(characterList);
-        p2CharacterSelect.getItems().addAll(characterList);
     }
 }
