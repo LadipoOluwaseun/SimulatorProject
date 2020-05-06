@@ -7,10 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     ApplicationRunner appRun;
+    String currentScn = "prepareScene.fxml";
     // prepareScene
     public Button beginMatchButton;
     public Button viewTeamBtn;
@@ -35,11 +33,11 @@ public class Controller implements Initializable {
     public Button viewPrepareBtn, createTeamBtn;
     public TextField teamName, char1, char2, char3;
     public Label sprocOutput;
+    public ListView currentTeams;
 
     public Controller(PassableServices services) {
         appRun = services.applicationRunner;
         charList = appRun.characterService.getCharacters();
-        teamList = appRun.teamService.getTeams();
 
         // this line will reset the state of the database before each run.
         // it is to make testing easier and will be removed in final product
@@ -49,6 +47,10 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         p1CharacterSelect.getItems().addAll(charList);
         p2CharacterSelect.getItems().addAll(charList);
+        if (currentScn == "teamScene.fxml") {
+            teamList = appRun.teamService.getTeams();
+            currentTeams.getItems().addAll(teamList);
+        }
     }
 
     public void setBeginMatchButton(ActionEvent actionEvent){
@@ -70,6 +72,7 @@ public class Controller implements Initializable {
     }
 
     public void changeScene(ActionEvent event, String fxml) throws IOException {
+        currentScn = fxml;
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         loader.setController(this);
         Parent root = loader.load();

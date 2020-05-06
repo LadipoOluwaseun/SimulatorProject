@@ -13,7 +13,6 @@ public class TeamService {
     public TeamService(DatabaseConnectionService dbService) {
         this.dbService = dbService;
         output = "";
-        System.out.println("initialized!");
     }
 
 
