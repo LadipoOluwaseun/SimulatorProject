@@ -2,7 +2,6 @@ package app;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -11,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,7 +28,7 @@ public class Controller implements Initializable {
     public TextField p2Username;
     public TextField p1Teamname;
     public TextField p2Teamname;
-    ObservableList<String> characterList;
+    ObservableList<String> charList;
     ObservableList<String> teamList;
     // teamScene
     public Button viewPrepareBtn, createTeamBtn;
@@ -38,14 +36,17 @@ public class Controller implements Initializable {
 
     public Controller(PassableServices services) {
         appRun = services.applicationRunner;
-        characterList = appRun.characterService.getCharacters();
+        charList = appRun.characterService.getCharacters();
         teamList = appRun.teamService.getTeams();
-        System.out.println(teamList);
+
+        // this line will reset the state of the database before each run.
+        // it is to make testing easier and will be removed in final product
+        appRun.teamService.clearTeams();
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        p1CharacterSelect.getItems().addAll(characterList);
-        p2CharacterSelect.getItems().addAll(characterList);
+        p1CharacterSelect.getItems().addAll(charList);
+        p2CharacterSelect.getItems().addAll(charList);
     }
 
     public void setBeginMatchButton(ActionEvent actionEvent){

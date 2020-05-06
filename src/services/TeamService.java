@@ -24,7 +24,11 @@ public class TeamService {
         cs.setObject(4, name);
         cs.setObject(5, ID);
         cs.execute();
-        System.out.println("execution finished");
+        SQLWarning warns = cs.getWarnings();
+        while (warns != null) {
+            System.out.println(warns.getMessage());
+            warns = warns.getNextWarning();
+        }
     }
 
     public ObservableList<String> getTeams(){
@@ -42,5 +46,17 @@ public class TeamService {
             e.printStackTrace();
         }
         return FXCollections.observableArrayList(teams);
+    }
+
+    public void clearTeams() {
+        String SQL = "DELETE FROM Teams";
+        Connection con = dbService.getConnection();
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(SQL);
+            System.out.println("cleared all teams");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
