@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -33,6 +34,7 @@ public class Controller implements Initializable {
     // teamScene
     public Button viewPrepareBtn, createTeamBtn;
     public TextField teamName, char1, char2, char3;
+    public Label sprocOutput;
 
     public Controller(PassableServices services) {
         appRun = services.applicationRunner;
@@ -55,7 +57,7 @@ public class Controller implements Initializable {
 
     public void createTeam(ActionEvent event) throws SQLException {
         appRun.teamService.addTeam(teamName.getText(), char1.getText(), char2.getText(), char3.getText(), 1);
-        System.out.println("create Team button clicked");
+        sprocOutput.setText(appRun.teamService.getOutput());
     }
 
     // methods for switching scenes

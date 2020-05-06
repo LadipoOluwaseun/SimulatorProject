@@ -8,13 +8,20 @@ import java.util.ArrayList;
 
 public class TeamService {
     private DatabaseConnectionService dbService = null;
+    public String output;
 
     public TeamService(DatabaseConnectionService dbService) {
         this.dbService = dbService;
+        output = "";
+        System.out.println("initialized!");
     }
 
 
     public void addTeam(String name, String char1, String char2, String char3, int ID) throws SQLException {
+        if (name.isEmpty()) name = null;
+        if (char1.isEmpty()) char1 = null;
+        if (char2.isEmpty()) char2 = null;
+        if (char3.isEmpty()) char3 = null;
         String SQL = "{call create_Team(?,?,?,?,?)}";
         Connection con = dbService.getConnection();
         CallableStatement cs = con.prepareCall(SQL);
@@ -25,9 +32,10 @@ public class TeamService {
         cs.setObject(5, ID);
         cs.execute();
         SQLWarning warns = cs.getWarnings();
-        while (warns != null) {
-            System.out.println(warns.getMessage());
-            warns = warns.getNextWarning();
+        if (warns != null) {
+            output = warns.getMessage();
+        } else {
+            output = "Team '" + name + "' created!";
         }
     }
 
@@ -58,5 +66,9 @@ public class TeamService {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public String getOutput() {
+        return output;
     }
 }
