@@ -82,6 +82,16 @@ public class TeamService {
         return res.getString(1);
     }
 
+    public int getID(String teamName) throws SQLException {
+        String SQL = "Select TeamID FROM Teams WHERE Name = '" + teamName + "'";
+        System.out.println(SQL);
+        Connection con = dbService.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet res = stmt.executeQuery(SQL);
+        res.next();
+        return res.getInt(1);
+    }
+
     public void clearTeams() {
         String SQL = "DELETE FROM Teams";
         Connection con = dbService.getConnection();

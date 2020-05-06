@@ -11,8 +11,7 @@
 
 <!--fx:controller="app.Controller"-->
 
-<GridPane alignment="center" hgap="10" prefHeight="536.0" prefWidth="770.0" vgap="10"
-          xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<GridPane alignment="center" hgap="10" prefHeight="536.0" prefWidth="770.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -22,18 +21,18 @@
    <children>
       <AnchorPane prefHeight="576.0" prefWidth="829.0">
          <children>
-            <Button fx:id="beginMatchButton" layoutX="333.0" layoutY="363.0" mnemonicParsing="false" text="Begin Match" />
-            <ChoiceBox fx:id="p1CharacterSelect" layoutX="148.0" layoutY="276.0" prefHeight="31.0" prefWidth="187.0" />
+            <Button fx:id="beginMatchBtn" layoutX="333.0" layoutY="363.0" mnemonicParsing="false" text="Begin Match" />
+            <ChoiceBox fx:id="p1Char" layoutX="148.0" layoutY="276.0" prefHeight="31.0" prefWidth="187.0" />
             <Text layoutX="317.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Match Configuration" />
-            <ChoiceBox fx:id="p2CharacterSelect" layoutX="437.0" layoutY="276.0" prefHeight="31.0" prefWidth="187.0" />
-            <TextField fx:id="p1Username" layoutX="148.0" layoutY="187.0" />
-            <TextField fx:id="p2Username" layoutX="437.0" layoutY="187.0" />
+            <ChoiceBox fx:id="p2Char" layoutX="437.0" layoutY="276.0" prefHeight="31.0" prefWidth="187.0" />
+            <TextField fx:id="p1User" layoutX="148.0" layoutY="187.0" />
+            <TextField fx:id="p2User" layoutX="437.0" layoutY="187.0" />
             <Text layoutX="215.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" />
             <Text layoutX="504.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2" />
             <Text layoutX="46.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
             <Text layoutX="21.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Teamname" />
-            <TextField fx:id="p1Teamname" layoutX="148.0" layoutY="231.0" />
-            <TextField fx:id="p2Teamname" layoutX="437.0" layoutY="231.0" />
+            <TextField fx:id="p1Team" layoutX="148.0" layoutY="231.0" />
+            <TextField fx:id="p2Team" layoutX="437.0" layoutY="231.0" />
             <Text layoutX="21.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Character" wrappingWidth="116.55030190944672" />
             <Button fx:id="viewTeamBtn" layoutX="20.0" layoutY="19.0" mnemonicParsing="false" onAction="#viewTeam" text="View Teams" />
          </children>

@@ -16,7 +16,7 @@
       <Button fx:id="createTeamBtn" layoutX="82.0" layoutY="246.0" mnemonicParsing="false" onAction="#createTeam" text="Create Team" />
       <Label fx:id="sprocOutput" alignment="TOP_LEFT" layoutX="33.0" layoutY="286.0" prefHeight="82.0" prefWidth="232.0" wrapText="true" />
       <ListView fx:id="currentTeams" layoutX="200.0" layoutY="74.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button fx:id="addChar" layoutX="447.0" layoutY="118.0" mnemonicParsing="false" text="Add Character" />
+      <Button fx:id="addChar" layoutX="447.0" layoutY="118.0" mnemonicParsing="false" onAction="#addChar" text="Add Character" />
       <TextField fx:id="editCharInput" layoutX="419.0" layoutY="154.0" promptText="Character" />
       <Button fx:id="removeChar" layoutX="437.0" layoutY="187.0" mnemonicParsing="false" onAction="#removeChar" text="Remove Character" />
    </children>
