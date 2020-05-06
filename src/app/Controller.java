@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -28,10 +29,10 @@ public class Controller implements Initializable {
     public TextField p1Teamname;
     public TextField p2Teamname;
     ObservableList<String> charList;
-    ObservableList<String> teamList;
+    ArrayList<Integer> teamList;
     // teamScene
-    public Button viewPrepareBtn, createTeamBtn;
-    public TextField teamName, char1, char2, char3;
+    public Button viewPrepareBtn, createTeamBtn, addChar, removeChar;
+    public TextField teamName, char1, char2, char3, editCharInput;
     public Label sprocOutput;
     public ListView currentTeams;
 
@@ -48,8 +49,15 @@ public class Controller implements Initializable {
         p1CharacterSelect.getItems().addAll(charList);
         p2CharacterSelect.getItems().addAll(charList);
         if (currentScn == "teamScene.fxml") {
-            teamList = appRun.teamService.getTeams();
-            currentTeams.getItems().addAll(teamList);
+            try {
+                ArrayList<String> teamNames = new ArrayList<String>();
+                for (int ID : appRun.teamService.getIDs()) {
+                    teamNames.add(appRun.teamService.getName(ID));
+                }
+                currentTeams.getItems().addAll(teamNames);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 
@@ -59,6 +67,15 @@ public class Controller implements Initializable {
 
     public void createTeam(ActionEvent event) throws SQLException {
         appRun.teamService.addTeam(teamName.getText(), char1.getText(), char2.getText(), char3.getText(), 1);
+        sprocOutput.setText(appRun.teamService.getOutput());
+    }
+
+    public void addChar(ActionEvent event) {
+        //TODO: add character to selected team
+    }
+
+    public void removeChar(ActionEvent event) throws SQLException {
+        appRun.teamService.removeCharFromTeam(editCharInput.getText());
         sprocOutput.setText(appRun.teamService.getOutput());
     }
 

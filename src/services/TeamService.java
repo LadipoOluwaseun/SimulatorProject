@@ -3,6 +3,7 @@ package services;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -14,7 +15,6 @@ public class TeamService {
         this.dbService = dbService;
         output = "";
     }
-
 
     public void addTeam(String name, String char1, String char2, String char3, int ID) throws SQLException {
         if (name.isEmpty()) name = null;
@@ -38,21 +38,48 @@ public class TeamService {
         }
     }
 
-    public ObservableList<String> getTeams(){
-        ArrayList<String> teams = new ArrayList<String>();
-        String teamQuery = "SELECT name FROM teams";
+    public void addCharToTeam(String charName, int ID) throws SQLException {
+        String SQL = "{call add_Char_to_Team(?,?)}";
+        Connection con = dbService.getConnection();
+        CallableStatement cs = con.prepareCall(SQL);
+        cs.setObject(1, charName);
+        cs.setObject(2, ID);
+        cs.execute();
+    }
 
-        Connection connection = dbService.getConnection();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet teamResults = statement.executeQuery(teamQuery);
-            while(teamResults.next()){
-                teams.add(teamResults.getString(1));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public void removeCharFromTeam(String charName) throws SQLException {
+        String SQL = "{call remove_Char_from_Team(?)}";
+        Connection con = dbService.getConnection();
+        CallableStatement cs = con.prepareCall(SQL);
+        cs.setObject(1, charName);
+        cs.execute();
+        SQLWarning warns = cs.getWarnings();
+        if (warns != null) {
+            output = warns.getMessage();
+        } else {
+            output = "Character '" + charName + "' removed!";
         }
-        return FXCollections.observableArrayList(teams);
+    }
+
+    public ArrayList<Integer> getIDs() throws SQLException {
+        ArrayList<Integer> teams = new ArrayList<Integer>();
+        String SQL = "SELECT TeamID FROM Teams";
+        Connection con = dbService.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet res = stmt.executeQuery(SQL);
+        while (res.next()) {
+            teams.add(res.getInt(1));
+        }
+        return teams;
+    }
+
+    public String getName(int ID) throws SQLException {
+        String SQL = "SELECT Name FROM Teams WHERE TeamID = " + Integer.toString(ID);
+        Connection con = dbService.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet res = stmt.executeQuery(SQL);
+        res.next();
+        return res.getString(1);
     }
 
     public void clearTeams() {
