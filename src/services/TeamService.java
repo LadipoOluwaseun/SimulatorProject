@@ -61,6 +61,21 @@ public class TeamService {
         }
     }
 
+    public void clearTeams() {
+        String SQL = "DELETE FROM Teams";
+        Connection con = dbService.getConnection();
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(SQL);
+            System.out.println("Clear team on program start: ON");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    //------------------//
+    //     GETTERS      //
+    //------------------//
     public ArrayList<Integer> getIDs() throws SQLException {
         ArrayList<Integer> teams = new ArrayList<Integer>();
         String SQL = "SELECT TeamID FROM Teams";
@@ -82,25 +97,18 @@ public class TeamService {
         return res.getString(1);
     }
 
-    public int getID(String teamName) throws SQLException {
+    public int getID(String teamName) {
         String SQL = "Select TeamID FROM Teams WHERE Name = '" + teamName + "'";
-        System.out.println(SQL);
         Connection con = dbService.getConnection();
-        Statement stmt = con.createStatement();
-        ResultSet res = stmt.executeQuery(SQL);
-        res.next();
-        return res.getInt(1);
-    }
-
-    public void clearTeams() {
-        String SQL = "DELETE FROM Teams";
-        Connection con = dbService.getConnection();
+        Statement stmt = null;
         try {
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate(SQL);
-            System.out.println("cleared all teams");
+            stmt = con.createStatement();
+            ResultSet res = stmt.executeQuery(SQL);
+            res.next();
+            return res.getInt(1);
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            output = "Could not retrieve the ID of this team.";
+            return -1;
         }
     }
 

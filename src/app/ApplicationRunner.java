@@ -16,6 +16,7 @@ public class ApplicationRunner {
     private EncryptionService es = new EncryptionService();
     protected CharacterService characterService;
     protected TeamService teamService;
+    protected ItemService itemService;
 
     public void runApplication(String[] args) {
         Properties props = this.loadProperties();
@@ -35,6 +36,7 @@ public class ApplicationRunner {
     public void loginSucceeded() {
         this.characterService = new CharacterService(dbService);
         this.teamService = new TeamService(dbService);
+        this.itemService = new ItemService(dbService);
     }
 
     public Properties loadProperties() {

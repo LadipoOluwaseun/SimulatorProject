@@ -3,19 +3,17 @@ package services;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class CharacterService {
     private DatabaseConnectionService dbService = null;
+    public String output;
 
     public CharacterService(DatabaseConnectionService dbService) {
         this.dbService = dbService;
+        output = "";
     }
-
 
     public boolean addCharacter(String characterName) {
         //TODO: Implement add character prompt.
@@ -38,5 +36,55 @@ public class CharacterService {
             e.printStackTrace();
         }
         return FXCollections.observableArrayList(characters);
+    }
+
+    public ArrayList<String> getCharsFromTeam(int teamID) {
+        String SQL = "Select Name FROM Characters WHERE TeamID = " + Integer.toString(teamID);
+        Connection con = dbService.getConnection();
+        ArrayList<String> chars = new ArrayList<String>();
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet res = stmt.executeQuery(SQL);
+            while (res.next()) {
+                chars.add(res.getString(1));
+            }
+        } catch (SQLException throwables) {
+            output = "Error getting characters from team " + Integer.toString(teamID) + ".";
+        }
+        return chars;
+    }
+
+    public int getID(String name) {
+        String SQL = "Select CharacterID FROM Characters WHERE Name = '" + name + "'";
+        Connection con = dbService.getConnection();
+        Statement stmt = null;
+        try {
+            stmt = con.createStatement();
+            ResultSet res = stmt.executeQuery(SQL);
+            res.next();
+            return res.getInt(1);
+        } catch (SQLException throwables) {
+            output = "Could not retrieve the ID of this character.";
+            return -1;
+        }
+    }
+
+    public String getName(int ID) {
+        String SQL = "Select Name FROM Characters WHERE CharacterID = " + Integer.toString(ID);
+        Connection con = dbService.getConnection();
+        Statement stmt = null;
+        try {
+            stmt = con.createStatement();
+            ResultSet res = stmt.executeQuery(SQL);
+            res.next();
+            return res.getString(1);
+        } catch (SQLException throwables) {
+            output = "Could not retrieve the name of this character.";
+            return null;
+        }
+    }
+
+    public String getOutput() {
+        return output;
     }
 }

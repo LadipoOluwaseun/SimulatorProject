@@ -21,12 +21,12 @@
    <children>
       <AnchorPane prefHeight="576.0" prefWidth="829.0">
          <children>
-            <Button fx:id="beginMatchBtn" layoutX="333.0" layoutY="363.0" mnemonicParsing="false" text="Begin Match" />
-            <ChoiceBox fx:id="p1Char" layoutX="148.0" layoutY="276.0" prefHeight="31.0" prefWidth="187.0" />
+            <Button fx:id="beginMatchBtn" layoutX="333.0" layoutY="363.0" mnemonicParsing="false" onAction="#viewBattle" text="Begin Match" />
+            <ChoiceBox fx:id="p1Char" layoutX="148.0" layoutY="276.0" onMouseClicked="#populateDrop1" prefHeight="31.0" prefWidth="187.0" />
             <Text layoutX="317.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Match Configuration" />
-            <ChoiceBox fx:id="p2Char" layoutX="437.0" layoutY="276.0" prefHeight="31.0" prefWidth="187.0" />
-            <TextField fx:id="p1User" layoutX="148.0" layoutY="187.0" />
-            <TextField fx:id="p2User" layoutX="437.0" layoutY="187.0" />
+            <ChoiceBox fx:id="p2Char" layoutX="437.0" layoutY="276.0" onMouseClicked="#populateDrop2" prefHeight="31.0" prefWidth="187.0" />
+            <TextField fx:id="p1User" layoutX="148.0" layoutY="187.0" promptText="Not implemented yet!" />
+            <TextField fx:id="p2User" layoutX="437.0" layoutY="187.0" promptText="Not implemented yet!" />
             <Text layoutX="215.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" />
             <Text layoutX="504.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2" />
             <Text layoutX="46.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
