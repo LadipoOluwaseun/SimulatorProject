@@ -16,9 +16,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+    ApplicationRunner appRun;
     // prepareScene
     public Button beginMatchButton;
     public Button viewTeamBtn;
@@ -29,12 +31,16 @@ public class Controller implements Initializable {
     public TextField p1Teamname;
     public TextField p2Teamname;
     ObservableList<String> characterList;
-
+    ObservableList<String> teamList;
     // teamScene
-    public Button viewPrepareBtn;
+    public Button viewPrepareBtn, createTeamBtn;
+    public TextField teamName, char1, char2, char3;
 
-    public Controller() {
-        //Cannot have fields in controller
+    public Controller(PassableServices services) {
+        appRun = services.applicationRunner;
+        characterList = appRun.characterService.getCharacters();
+        teamList = appRun.teamService.getTeams();
+        System.out.println(teamList);
     }
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,8 +52,9 @@ public class Controller implements Initializable {
         //TODO: Should populate all input data into the database upon button press
     }
 
-    public void setupCharacterList(PassableServices services) {
-        characterList = services.applicationRunner.characterService.getCharacters();
+    public void createTeam(ActionEvent event) throws SQLException {
+        appRun.teamService.addTeam(teamName.getText(), char1.getText(), char2.getText(), char3.getText(), 1);
+        System.out.println("create Team button clicked");
     }
 
     // methods for switching scenes

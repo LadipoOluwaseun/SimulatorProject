@@ -8,13 +8,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     private static ApplicationRunner appRunner = new ApplicationRunner();
+    PassableServices services = new PassableServices(appRunner);
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("prepareScene.fxml"));
-        Controller control = new Controller();
-        PassableServices services = new PassableServices(appRunner);
-        control.setupCharacterList(services);
+        Controller control = new Controller(services);
         loader.setController(control);
         Parent root = loader.load();
 

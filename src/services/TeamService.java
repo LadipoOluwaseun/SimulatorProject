@@ -3,10 +3,7 @@ package services;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class TeamService {
@@ -17,10 +14,17 @@ public class TeamService {
     }
 
 
-    public boolean addTeam(String teamName) {
-        //TODO: Implement add character prompt.
-        System.out.println("Add Team Not Implemented.");
-        return false;
+    public void addTeam(String name, String char1, String char2, String char3, int ID) throws SQLException {
+        String SQL = "{call create_Team(?,?,?,?,?)}";
+        Connection con = dbService.getConnection();
+        CallableStatement cs = con.prepareCall(SQL);
+        cs.setObject(1, char1);
+        cs.setObject(2, char2);
+        cs.setObject(3, char3);
+        cs.setObject(4, name);
+        cs.setObject(5, ID);
+        cs.execute();
+        System.out.println("execution finished");
     }
 
     public ObservableList<String> getTeams(){
