@@ -1,5 +1,6 @@
 package services;
 
+import app.IDHolder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -90,15 +91,22 @@ public class TeamService {
         return teams;
     }
 
-    public String getName(int ID) throws SQLException {
+    public IDHolder getName(int ID) {
         String SQL = "SELECT Name FROM Teams WHERE TeamID = " + Integer.toString(ID);
         Connection con = dbService.getConnection();
-        Statement stmt = con.createStatement();
-        ResultSet res = stmt.executeQuery(SQL);
-        res.next();
-        return res.getString(1);
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet res = stmt.executeQuery(SQL);
+            res.next();
+            String name = res.getString(1);
+            return new IDHolder(ID, name);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
+    // WILL BE REMOVED SOON!
     public int getID(String teamName) {
         String SQL = "Select TeamID FROM Teams WHERE Name = '" + teamName + "'";
         Connection con = dbService.getConnection();

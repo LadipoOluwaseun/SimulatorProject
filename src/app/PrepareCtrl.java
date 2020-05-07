@@ -24,7 +24,7 @@ public class PrepareCtrl extends Controller {
     public PrepareCtrl(PassableServices serv) {
         super(serv);
         // dev testing only
-//        charServ.healAll();
+        charServ.healAll();
 //        teamServ.clearTeams();
     }
 

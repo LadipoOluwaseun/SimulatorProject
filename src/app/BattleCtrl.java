@@ -2,10 +2,7 @@ package app;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import services.CharacterService;
 import services.ItemService;
@@ -19,6 +16,7 @@ public class BattleCtrl extends Controller {
     public int charID1, charID2;
     public Label p1Char, p2Char;
     public ArrayList<Integer> itemIDs1, itemIDs2;
+    public ProgressBar p1Bar, p2Bar;
 
     public BattleCtrl(PassableServices services, ArrayList<Integer> charIDs) {
         super(services);
@@ -45,5 +43,7 @@ public class BattleCtrl extends Controller {
         int ItemID_1 = ((IDHolder) p1Item.getSelectionModel().getSelectedItem()).getID();
         int ItemID_2 = ((IDHolder) p2Item.getSelectionModel().getSelectedItem()).getID();
         itemServ.executeTurn(charID1, charID2, ItemID_1, ItemID_2);
+        p1Bar.setProgress(charServ.getHealth(charID1)/100.0);
+        p2Bar.setProgress(charServ.getHealth(charID2)/100.0);
     }
 }

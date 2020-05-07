@@ -99,4 +99,19 @@ public class CharacterService {
             throwables.printStackTrace();
         }
     }
+
+    public int getHealth(int charID) {
+        String SQL = "Select Health FROM Characters WHERE CharacterID = " + Integer.toString(charID);
+        Connection con = dbService.getConnection();
+        Statement stmt = null;
+        try {
+            stmt = con.createStatement();
+            ResultSet res = stmt.executeQuery(SQL);
+            res.next();
+            return res.getInt(1);
+        } catch (SQLException throwables) {
+            output = "Could not retrieve the health of this character.";
+            return -1;
+        }
+    }
 }

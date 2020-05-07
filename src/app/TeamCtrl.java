@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import services.TeamService;
@@ -27,7 +28,7 @@ public class TeamCtrl extends Controller {
 
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            ArrayList<String> teamNames = new ArrayList<String>();
+            ArrayList<IDHolder> teamNames = new ArrayList<IDHolder>();
             for (int ID : teamServ.getIDs()) teamNames.add(teamServ.getName(ID));
             currentTeams.getItems().addAll(teamNames);
         } catch (SQLException e) { e.printStackTrace(); }
@@ -39,8 +40,8 @@ public class TeamCtrl extends Controller {
     }
 
     public void addChar(ActionEvent event) throws SQLException {
-        String teamName = currentTeams.getSelectionModel().getSelectedItems().get(0).toString();
-        teamServ.addCharToTeam(editCharInput.getText(), teamServ.getID(teamName));
+        int teamID = ((IDHolder) currentTeams.getSelectionModel().getSelectedItem()).getID();
+        teamServ.addCharToTeam(editCharInput.getText(), teamID);
     }
 
     public void removeChar(ActionEvent event) throws SQLException {
