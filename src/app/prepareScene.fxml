@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<!--fx:controller="app.Controller"-->
+<!--fx:controller="app.PrepareCtrl"-->
 
 <GridPane alignment="center" hgap="10" prefHeight="536.0" prefWidth="770.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>

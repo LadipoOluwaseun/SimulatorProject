@@ -1,6 +1,5 @@
 package app;
 
-import app.PassableServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,17 +18,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class TeamControl implements Initializable {
-    PassableServices serv;
-    TeamService teamServ;
+public class TeamCtrl extends Controller {
     public TextField teamName, char1, char2, char3, editCharInput;
     public Label sprocOutput;
     public ListView currentTeams;
 
-    public TeamControl(PassableServices serv) {
-        this.serv = serv;
-        teamServ = serv.applicationRunner.teamService;
-    }
+    public TeamCtrl(PassableServices serv) { super(serv); }
+
     public void initialize(URL location, ResourceBundle resources) {
         try {
             ArrayList<String> teamNames = new ArrayList<String>();
@@ -53,19 +48,7 @@ public class TeamControl implements Initializable {
         sprocOutput.setText(teamServ.getOutput());
     }
 
-    public void changeScene(ActionEvent event, String fxml, Initializable control) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-        loader.setController(control);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        ((Node) (event.getSource())).getScene().getWindow().hide();
-    }
-
     public void viewPrepare(ActionEvent event) throws IOException {
-        changeScene(event, "prepareScene.fxml", new Controller(serv));
+        changeScene(event, "prepareScene.fxml", new PrepareCtrl(serv));
     }
 }

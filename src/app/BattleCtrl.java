@@ -14,19 +14,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class BattleControl implements Initializable {
-    public CharacterService charServ;
-    public ItemService itemServ;
+public class BattleCtrl extends Controller {
     public ChoiceBox p1Item, p2Item;
     public int charID1, charID2;
     public Label p1Char, p2Char;
     public ArrayList<Integer> itemIDs1, itemIDs2;
 
-    public BattleControl(PassableServices services, ArrayList<Integer> charIDs) {
+    public BattleCtrl(PassableServices services, ArrayList<Integer> charIDs) {
+        super(services);
         charID1 = charIDs.get(0);
         charID2 = charIDs.get(1);
-        charServ = services.applicationRunner.characterService;
-        itemServ = services.applicationRunner.itemService;
     }
 
     public void initialize(URL location, ResourceBundle resources) {
