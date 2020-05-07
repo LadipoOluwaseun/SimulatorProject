@@ -21,20 +21,20 @@
    <children>
       <AnchorPane prefHeight="576.0" prefWidth="829.0">
          <children>
-            <Button fx:id="beginMatchBtn" layoutX="333.0" layoutY="363.0" mnemonicParsing="false" onAction="#viewBattle" text="Begin Match" />
+            <Button layoutX="333.0" layoutY="363.0" mnemonicParsing="false" onAction="#viewBattle" text="Begin Match" />
             <ChoiceBox fx:id="p1Char" layoutX="148.0" layoutY="276.0" onMouseClicked="#populateDrop1" prefHeight="31.0" prefWidth="187.0" />
             <Text layoutX="317.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Match Configuration" />
             <ChoiceBox fx:id="p2Char" layoutX="437.0" layoutY="276.0" onMouseClicked="#populateDrop2" prefHeight="31.0" prefWidth="187.0" />
-            <TextField fx:id="p1User" layoutX="148.0" layoutY="187.0" promptText="Not implemented yet!" />
-            <TextField fx:id="p2User" layoutX="437.0" layoutY="187.0" promptText="Not implemented yet!" />
+            <TextField fx:id="user1Fld" layoutX="148.0" layoutY="187.0" promptText="Not implemented yet!" />
+            <TextField fx:id="user2Fld" layoutX="437.0" layoutY="187.0" promptText="Not implemented yet!" />
             <Text layoutX="215.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" />
             <Text layoutX="504.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2" />
             <Text layoutX="46.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
             <Text layoutX="21.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Teamname" />
-            <TextField fx:id="p1Team" layoutX="148.0" layoutY="231.0" />
-            <TextField fx:id="p2Team" layoutX="437.0" layoutY="231.0" />
+            <TextField fx:id="team1Fld" layoutX="148.0" layoutY="231.0" />
+            <TextField fx:id="team2Fld" layoutX="437.0" layoutY="231.0" />
             <Text layoutX="21.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Character" wrappingWidth="116.55030190944672" />
-            <Button fx:id="viewTeamBtn" layoutX="20.0" layoutY="19.0" mnemonicParsing="false" onAction="#viewTeam" text="View Teams" />
+            <Button layoutX="20.0" layoutY="19.0" mnemonicParsing="false" onAction="#viewTeam" text="View Teams" />
          </children>
       </AnchorPane>
    </children>

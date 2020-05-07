@@ -16,26 +16,28 @@ public class TeamService {
         output = "";
     }
 
-    public void addTeam(String name, String char1, String char2, String char3, int ID) throws SQLException {
-        if (name.isEmpty()) name = null;
-        if (char1.isEmpty()) char1 = null;
-        if (char2.isEmpty()) char2 = null;
-        if (char3.isEmpty()) char3 = null;
+    //------------------//
+    //     SETTERS      //
+    //------------------//
+    public void addTeam(String name, String char1, String char2, String char3, int ID) {
+        nullifyString(name);
+        nullifyString(char1);
+        nullifyString(char2);
+        nullifyString(char3);
         String SQL = "{call create_Team(?,?,?,?,?)}";
         Connection con = dbService.getConnection();
-        CallableStatement cs = con.prepareCall(SQL);
-        cs.setObject(1, char1);
-        cs.setObject(2, char2);
-        cs.setObject(3, char3);
-        cs.setObject(4, name);
-        cs.setObject(5, ID);
-        cs.execute();
-        SQLWarning warns = cs.getWarnings();
-        if (warns != null) {
-            output = warns.getMessage();
-        } else {
-            output = "Team '" + name + "' created!";
-        }
+        try {
+            CallableStatement cs = con.prepareCall(SQL);
+            cs.setObject(1, char1);
+            cs.setObject(2, char2);
+            cs.setObject(3, char3);
+            cs.setObject(4, name);
+            cs.setObject(5, ID);
+            cs.execute();
+            SQLWarning warns = cs.getWarnings();
+            if (warns != null) { output = warns.getMessage(); }
+            else { output = "Team '" + name + "' created!"; }
+        } catch (SQLException e) { e.printStackTrace(); }
     }
 
     public void addCharToTeam(String charName, int ID) throws SQLException {
@@ -112,7 +114,14 @@ public class TeamService {
         }
     }
 
+    //------------------//
+    //     UTILITY      //
+    //------------------//
     public String getOutput() {
         return output;
+    }
+
+    public void nullifyString(String str) {
+        if (str.isEmpty()) { str = null; }
     }
 }

@@ -20,52 +20,26 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    PassableServices services;
-    ApplicationRunner appRun;
-    String currentScn = "prepareScene.fxml";
+    PassableServices serv;
     TeamService teamServ;
     CharacterService charServ;
     // prepareScene
-    public Button beginMatchBtn, viewTeamBtn;
     public ChoiceBox p1Char, p2Char;
-    public TextField p1User, p2User, p1Team, p2Team;
-    ObservableList<String> charList;
-    ArrayList<Integer> teamList;
-    // teamScene
-    public Button viewPrepareBtn, createTeamBtn, addChar, removeChar;
-    public TextField teamName, char1, char2, char3, editCharInput;
-    public Label sprocOutput;
-    public ListView currentTeams;
+    public TextField user1Fld, user2Fld, team1Fld, team2Fld;
 
-    public Controller(PassableServices services) {
-        this.services = services;
-        appRun = services.applicationRunner;
-        teamServ = appRun.teamService;
-        charServ = appRun.characterService;
-        charList = appRun.characterService.getCharacters();
+    public Controller(PassableServices serv) {
+        this.serv = serv;
+        teamServ = serv.applicationRunner.teamService;
+        charServ = serv.applicationRunner.characterService;
 
-        // this line will reset the state of the database before each run.
-        // it is to make testing easier and will be removed in final product
+        // dev testing only
+//        charServ.healAll();
 //        teamServ.clearTeams();
-        charServ.healAll();
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        if (currentScn == "prepareScene.fxml") {
-        } else if (currentScn == "teamScene.fxml") {
-            try {
-                ArrayList<String> teamNames = new ArrayList<String>();
-                for (int ID : teamServ.getIDs()) teamNames.add(teamServ.getName(ID));
-                currentTeams.getItems().addAll(teamNames);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }
     }
 
-    //--------------//
-    // prepareScene //
-    //--------------//
     public void populateDropDown(MouseEvent event, TextField teamInput, ChoiceBox drop) {
         drop.getItems().clear();
         String team = teamInput.getText();
@@ -74,40 +48,18 @@ public class Controller implements Initializable {
             System.out.println(teamServ.getOutput());
             return;
         }
-        ArrayList<String> chars = appRun.characterService.getCharsFromTeam(teamID);
-        if (chars.isEmpty()) { System.out.println(appRun.characterService.getOutput()); }
+        ArrayList<String> chars = charServ.getCharsFromTeam(teamID);
+        if (chars.isEmpty()) { System.out.println(charServ.getOutput()); }
         else { drop.getItems().addAll(chars); }
     }
-    public void populateDrop1(MouseEvent event) { populateDropDown(event, p1Team, p1Char); }
-    public void populateDrop2(MouseEvent event) { populateDropDown(event, p2Team, p2Char); }
-
-    //-----------//
-    // teamScene //
-    //-----------//
-    public void createTeam(ActionEvent event) throws SQLException {
-        teamServ.addTeam(teamName.getText(), char1.getText(), char2.getText(), char3.getText(), 1);
-        sprocOutput.setText(teamServ.getOutput());
-    }
-
-    public void addChar(ActionEvent event) throws SQLException {
-        String teamName = currentTeams.getSelectionModel().getSelectedItems().get(0).toString();
-        teamServ.addCharToTeam(editCharInput.getText(), teamServ.getID(teamName));
-    }
-
-    public void removeChar(ActionEvent event) throws SQLException {
-        teamServ.removeCharFromTeam(editCharInput.getText());
-        sprocOutput.setText(teamServ.getOutput());
-    }
+    public void populateDrop1(MouseEvent event) { populateDropDown(event, team1Fld, p1Char); }
+    public void populateDrop2(MouseEvent event) { populateDropDown(event, team2Fld, p2Char); }
 
     //------------------//
     // switching scenes //
     //------------------//
     public void viewTeam(ActionEvent event) throws IOException {
-        changeScene(event, "teamScene.fxml", this);
-    }
-
-    public void viewPrepare(ActionEvent event) throws IOException {
-        changeScene(event, "prepareScene.fxml", this);
+        changeScene(event, "teamScene.fxml", new TeamControl(serv));
     }
 
     public void viewBattle(ActionEvent event) throws IOException {
@@ -116,11 +68,10 @@ public class Controller implements Initializable {
         charIDs.add(charServ.getID(char1));
         String char2 = p2Char.getSelectionModel().getSelectedItem().toString();
         charIDs.add(charServ.getID(char2));
-        changeScene(event, "battleScene.fxml", new BattleControl(services, charIDs));
+        changeScene(event, "battleScene.fxml", new BattleControl(serv, charIDs));
     }
 
     public void changeScene(ActionEvent event, String fxml, Initializable control) throws IOException {
-        currentScn = fxml;
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
         loader.setController(control);
         Parent root = loader.load();

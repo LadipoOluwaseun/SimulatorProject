@@ -8,16 +8,16 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="viewPrepareBtn" layoutX="33.0" layoutY="34.0" mnemonicParsing="false" onAction="#viewPrepare" text="Prepare to Fight" />
+      <Button layoutX="33.0" layoutY="34.0" mnemonicParsing="false" onAction="#viewPrepare" text="Prepare to Fight" />
       <TextField fx:id="teamName" layoutX="33.0" layoutY="105.0" promptText="Team Name" />
       <TextField fx:id="char1" layoutX="33.0" layoutY="141.0" promptText="Character 1" />
       <TextField fx:id="char2" layoutX="33.0" layoutY="174.0" promptText="Character 2" />
       <TextField fx:id="char3" layoutX="33.0" layoutY="212.0" promptText="Character 3" />
-      <Button fx:id="createTeamBtn" layoutX="82.0" layoutY="246.0" mnemonicParsing="false" onAction="#createTeam" text="Create Team" />
+      <Button layoutX="82.0" layoutY="246.0" mnemonicParsing="false" onAction="#createTeam" text="Create Team" />
       <Label fx:id="sprocOutput" alignment="TOP_LEFT" layoutX="33.0" layoutY="286.0" prefHeight="82.0" prefWidth="232.0" wrapText="true" />
       <ListView fx:id="currentTeams" layoutX="200.0" layoutY="74.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button fx:id="addChar" layoutX="447.0" layoutY="118.0" mnemonicParsing="false" onAction="#addChar" text="Add Character" />
+      <Button layoutX="447.0" layoutY="118.0" mnemonicParsing="false" onAction="#addChar" text="Add Character" />
       <TextField fx:id="editCharInput" layoutX="419.0" layoutY="154.0" promptText="Character" />
-      <Button fx:id="removeChar" layoutX="437.0" layoutY="187.0" mnemonicParsing="false" onAction="#removeChar" text="Remove Character" />
+      <Button layoutX="437.0" layoutY="187.0" mnemonicParsing="false" onAction="#removeChar" text="Remove Character" />
    </children>
 </AnchorPane>
