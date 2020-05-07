@@ -47,6 +47,7 @@ public class Controller implements Initializable {
         // this line will reset the state of the database before each run.
         // it is to make testing easier and will be removed in final product
 //        teamServ.clearTeams();
+        charServ.healAll();
     }
 
     public void initialize(URL location, ResourceBundle resources) {

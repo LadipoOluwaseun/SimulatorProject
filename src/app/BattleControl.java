@@ -1,5 +1,6 @@
 package app;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -17,7 +18,6 @@ public class BattleControl implements Initializable {
     public CharacterService charServ;
     public ItemService itemServ;
     public ChoiceBox p1Item, p2Item;
-    public Button p1Atk, p2Atk;
     public int charID1, charID2;
     public Label p1Char, p2Char;
     public ArrayList<Integer> itemIDs1, itemIDs2;
@@ -41,8 +41,12 @@ public class BattleControl implements Initializable {
     }
 
     public void populateDropDown(ArrayList<Integer> itemIDs, ChoiceBox drop) {
-        for (int itemID : itemIDs) {
-            p1Item.getItems().add(itemServ.getName(itemID));
-        }
+        for (int itemID : itemIDs) { drop.getItems().add(itemServ.getName(itemID)); }
+    }
+
+    public void startTurn(ActionEvent event) {
+        int ItemID_1 = ((IDHolder) p1Item.getSelectionModel().getSelectedItem()).getID();
+        int ItemID_2 = ((IDHolder) p2Item.getSelectionModel().getSelectedItem()).getID();
+        itemServ.executeTurn(charID1, charID2, ItemID_1, ItemID_2);
     }
 }

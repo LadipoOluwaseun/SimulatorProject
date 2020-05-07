@@ -87,4 +87,16 @@ public class CharacterService {
     public String getOutput() {
         return output;
     }
+
+    public void healAll() {
+        String SQL = "UPDATE Characters SET Health = 100";
+        Connection con = dbService.getConnection();
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(SQL);
+            System.out.println("Heal all characters on program start: ON");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }
