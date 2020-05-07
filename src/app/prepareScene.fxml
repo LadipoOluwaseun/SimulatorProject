@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <!--fx:controller="app.PrepareCtrl"-->
@@ -21,20 +28,111 @@
    <children>
       <AnchorPane prefHeight="576.0" prefWidth="829.0">
          <children>
-            <Button layoutX="333.0" layoutY="363.0" mnemonicParsing="false" onAction="#viewBattle" text="Begin Match" />
-            <ChoiceBox fx:id="p1Char" layoutX="148.0" layoutY="276.0" onMouseClicked="#populateDrop1" prefHeight="31.0" prefWidth="187.0" />
-            <Text layoutX="317.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Match Configuration" />
-            <ChoiceBox fx:id="p2Char" layoutX="437.0" layoutY="276.0" onMouseClicked="#populateDrop2" prefHeight="31.0" prefWidth="187.0" />
-            <TextField fx:id="user1Fld" layoutX="148.0" layoutY="187.0" promptText="Not implemented yet!" />
-            <TextField fx:id="user2Fld" layoutX="437.0" layoutY="187.0" promptText="Not implemented yet!" />
-            <Text layoutX="215.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" />
-            <Text layoutX="504.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2" />
-            <Text layoutX="46.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-            <Text layoutX="21.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Teamname" />
-            <TextField fx:id="team1Fld" layoutX="148.0" layoutY="231.0" />
-            <TextField fx:id="team2Fld" layoutX="437.0" layoutY="231.0" />
-            <Text layoutX="21.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Character" wrappingWidth="116.55030190944672" />
-            <Button layoutX="20.0" layoutY="19.0" mnemonicParsing="false" onAction="#viewTeam" text="View Teams" />
+            <BorderPane prefHeight="330.0" prefWidth="583.0">
+               <center>
+                  <VBox alignment="CENTER" prefHeight="237.0" prefWidth="730.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="175.0" prefWidth="520.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <HBox alignment="CENTER" prefHeight="40.0">
+                                       <children>
+                                          <Label prefWidth="80.0" text="Username" />
+                                          <TextField fx:id="user1Fld" prefWidth="150.0" promptText="Not implemented yet!" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="40.0">
+                                       <children>
+                                          <Label prefWidth="80.0" text="Team" />
+                                          <TextField fx:id="team1Fld" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="40.0">
+                                       <children>
+                                          <Label prefWidth="80.0" text="Character" />
+                                          <ChoiceBox fx:id="p1Char" focusTraversable="false" onMouseClicked="#populateDrop1" prefHeight="31.0" prefWidth="150.0" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="250.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="15.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <HBox alignment="CENTER" prefHeight="40.0">
+                                       <children>
+                                          <TextField fx:id="user2Fld" prefWidth="150.0" promptText="Not implemented yet!" />
+                                          <Label alignment="CENTER_RIGHT" prefWidth="80.0" text="Username" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="40.0">
+                                       <children>
+                                          <TextField fx:id="team2Fld" prefWidth="150.0" />
+                                          <Label alignment="CENTER_RIGHT" prefWidth="80.0" text="Team" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="40.0">
+                                       <children>
+                                          <ChoiceBox fx:id="p2Char" focusTraversable="false" onMouseClicked="#populateDrop2" prefHeight="31.0" prefWidth="150.0" />
+                                          <Label alignment="CENTER_RIGHT" prefWidth="80.0" text="Character" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Label prefHeight="40.0" prefWidth="300.0" text="Error messages go here. Error messages go here. Error messages go here. Error messages go here. Error messages go here. Error messages go here. Error messages go here. " wrapText="true" />
+                     </children>
+                  </VBox>
+               </center>
+               <bottom>
+                  <Button mnemonicParsing="false" onAction="#viewBattle" text="Begin Match" BorderPane.alignment="CENTER" />
+               </bottom>
+               <top>
+                  <StackPane prefHeight="70.0" prefWidth="730.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Match Configuration">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="67.0" prefWidth="714.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#viewTeam" text="View Teams">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <StackPane.margin>
+                              <Insets left="15.0" top="15.0" />
+                           </StackPane.margin>
+                        </HBox>
+                     </children>
+                  </StackPane>
+               </top>
+            </BorderPane>
          </children>
       </AnchorPane>
    </children>
