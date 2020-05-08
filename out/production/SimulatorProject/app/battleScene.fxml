@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="atk" layoutX="180.0" layoutY="320.0" mnemonicParsing="false" onAction="#startTurn" prefHeight="50.0" prefWidth="150.0" text="Attack!" textAlignment="CENTER" textFill="#ea0000">
          <opaqueInsets>
@@ -21,7 +16,7 @@
          </font></Button>
       <VBox alignment="CENTER" layoutX="30.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Label fx:id="p1Char" text="Player 1's Character">
+            <Label fx:id="p1Char" text="Player 1's Character" textFill="#e50404">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -40,7 +35,7 @@
       </VBox>
       <VBox alignment="CENTER" layoutX="280.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Label fx:id="p2Char" text="Player 2's Character">
+            <Label fx:id="p2Char" text="Player 2's Character" textFill="#0a66cf">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
