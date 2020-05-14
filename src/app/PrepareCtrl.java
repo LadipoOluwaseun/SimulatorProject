@@ -8,10 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.CharacterService;
 import services.TeamService;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,9 +23,11 @@ import java.util.ResourceBundle;
 public class PrepareCtrl extends Controller {
     public ChoiceBox p1Char, p2Char;
     public TextField user1Fld, user2Fld, team1Fld, team2Fld;
+    public FileChooser fc;
 
     public PrepareCtrl(PassableServices serv) {
         super(serv);
+        fc = new FileChooser();
         // dev testing only
         charServ.healAll();
 //        teamServ.clearTeams();
@@ -42,6 +47,13 @@ public class PrepareCtrl extends Controller {
     }
     public void populateDrop1(MouseEvent event) { populateDropDown(event, team1Fld, p1Char); }
     public void populateDrop2(MouseEvent event) { populateDropDown(event, team2Fld, p2Char); }
+
+    public void chooseImport(ActionEvent event) throws FileNotFoundException {
+        File file = fc.showOpenDialog(new Stage());
+        if (file != null) {
+            Parser.parseAbilities(file, abilServ);
+        }
+    }
 
     //------------------//
     // switching scenes //
