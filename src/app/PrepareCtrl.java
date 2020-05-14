@@ -51,7 +51,7 @@ public class PrepareCtrl extends Controller {
     public void chooseImport(ActionEvent event) throws FileNotFoundException {
         File file = fc.showOpenDialog(new Stage());
         if (file != null) {
-            Parser.parseAbilities(file, abilServ);
+            Parser.parse(file, addServ);
         }
     }
 
