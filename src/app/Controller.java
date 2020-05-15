@@ -7,7 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import services.AddService;
+import services.AddClearService;
 import services.CharacterService;
 import services.ItemService;
 import services.TeamService;
@@ -21,14 +21,14 @@ public class Controller implements Initializable {
     public CharacterService charServ;
     public TeamService teamServ;
     public ItemService itemServ;
-    public AddService addServ;
+    public AddClearService addServ;
 
     public Controller(PassableServices serv) {
         this.serv = serv;
         charServ = serv.applicationRunner.characterService;
         teamServ = serv.applicationRunner.teamService;
         itemServ = serv.applicationRunner.itemService;
-        addServ = serv.applicationRunner.addService;
+        addServ = serv.applicationRunner.addClearService;
     }
 
     public void initialize(URL location, ResourceBundle resources) {

@@ -28,7 +28,7 @@
    <children>
       <AnchorPane prefHeight="394.0" prefWidth="583.0">
          <children>
-            <BorderPane prefHeight="330.0" prefWidth="583.0">
+            <BorderPane prefHeight="400.0" prefWidth="583.0">
                <center>
                   <VBox alignment="CENTER" prefHeight="237.0" prefWidth="730.0" BorderPane.alignment="CENTER">
                      <children>
@@ -106,9 +106,6 @@
                      </children>
                   </VBox>
                </center>
-               <bottom>
-                  <Button mnemonicParsing="false" onAction="#viewBattle" text="Begin Match" BorderPane.alignment="CENTER" />
-               </bottom>
                <top>
                   <StackPane prefHeight="70.0" prefWidth="350.0" BorderPane.alignment="CENTER">
                      <children>
@@ -132,8 +129,19 @@
                      </children>
                   </StackPane>
                </top>
+               <bottom>
+                  <VBox alignment="CENTER" prefHeight="70.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#viewBattle" text="Begin Match">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#chooseImport" text="Choose Import File" />
+                     </children>
+                  </VBox>
+               </bottom>
             </BorderPane>
-            <Button layoutX="266.0" layoutY="349.0" mnemonicParsing="false" onAction="#chooseImport" text="Choose Import File" />
          </children>
       </AnchorPane>
    </children>

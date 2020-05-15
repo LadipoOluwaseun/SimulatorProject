@@ -12,6 +12,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        // THIS LINE IS TO TEST IMPORTS. MAKE SURE TO COMMENT OUT!!
+        appRun.addClearService.clearDB();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("prepareScene.fxml"));
         PrepareCtrl ctrl = new PrepareCtrl(serv);
         loader.setController(ctrl);
