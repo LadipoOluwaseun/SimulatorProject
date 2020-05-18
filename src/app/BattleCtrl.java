@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import services.CharacterService;
 import services.ItemService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -39,11 +40,23 @@ public class BattleCtrl extends Controller {
         for (int itemID : itemIDs) { drop.getItems().add(itemServ.getName(itemID)); }
     }
 
-    public void startTurn(ActionEvent event) {
+    public void startTurn(ActionEvent event) throws IOException {
         int ItemID_1 = ((IDHolder) p1Item.getSelectionModel().getSelectedItem()).getID();
         int ItemID_2 = ((IDHolder) p2Item.getSelectionModel().getSelectedItem()).getID();
         itemServ.executeTurn(charID1, charID2, ItemID_1, ItemID_2);
         p1Bar.setProgress(charServ.getHealth(charID1)/100.0);
         p2Bar.setProgress(charServ.getHealth(charID2)/100.0);
+        boolean p1Alive = p1Bar.getProgress() != 0;
+        boolean p2Alive = p2Bar.getProgress() != 0;
+        if (!p1Alive && !p2Alive) {
+            System.out.println("tie!");
+        } else if (!p1Alive) {
+            System.out.println("p1 loses!");
+        } else if (!p2Alive) {
+            System.out.println("p2 loses!");
+        }
+        if (!(p1Alive && p2Alive)) {
+            changeScene(event, "prepareScene.fxml", new PrepareCtrl(serv));
+        }
     }
 }
