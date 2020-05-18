@@ -50,10 +50,13 @@ public class BattleCtrl extends Controller {
         boolean p2Alive = p2Bar.getProgress() != 0;
         if (!p1Alive && !p2Alive) {
             System.out.println("tie!");
+            addServ.insertBattle(charID1, charID2, 1);
         } else if (!p1Alive) {
             System.out.println("p1 loses!");
+            addServ.insertBattle(charID2, charID1, 0);
         } else if (!p2Alive) {
             System.out.println("p2 loses!");
+            addServ.insertBattle(charID1, charID2, 0);
         }
         if (!(p1Alive && p2Alive)) {
             changeScene(event, "prepareScene.fxml", new PrepareCtrl(serv));

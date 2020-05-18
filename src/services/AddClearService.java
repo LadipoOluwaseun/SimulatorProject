@@ -98,14 +98,30 @@ public class AddClearService {
         } catch (SQLException e) { e.printStackTrace(); }
     }
 
-    public void addBattle(int battleID, int winnerID, int loserID) {
-        String SQL = "{call import_Battle(?,?,?)}";
+    public void addBattle(int battleID, int winnerID, int loserID, int isTie) {
+        String SQL = "{call import_Battle(?,?,?,?)}";
         Connection con = dbService.getConnection();
         try {
             CallableStatement cs = con.prepareCall(SQL);
             cs.setObject(1, battleID);
             cs.setObject(2, winnerID);
             cs.setObject(3, loserID);
+            cs.setObject(4, isTie);
+            cs.execute();
+            SQLWarning warns = cs.getWarnings();
+            if (warns != null) { output = warns.getMessage(); }
+            else { output = ""; }
+        } catch (SQLException e) { e.printStackTrace(); }
+    }
+
+    public void insertBattle(int winnerID, int loserID, int isTie) {
+        String SQL = "{call insert_Battle(?,?,?)}";
+        Connection con = dbService.getConnection();
+        try {
+            CallableStatement cs = con.prepareCall(SQL);
+            cs.setObject(1, winnerID);
+            cs.setObject(2, loserID);
+            cs.setObject(3, isTie);
             cs.execute();
             SQLWarning warns = cs.getWarnings();
             if (warns != null) { output = warns.getMessage(); }

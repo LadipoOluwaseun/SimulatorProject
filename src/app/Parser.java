@@ -303,6 +303,7 @@ public class Parser {
             int battleID = -1;
             int winnerID = -1;
             int loserID = -1;
+            int isTie = -1;
             while (lineScan.hasNext()) {
                 String token = lineScan.next();
                 switch(i) {
@@ -314,7 +315,10 @@ public class Parser {
                         break;
                     case 2:
                         loserID = Integer.parseInt(token);
-                        addServ.addBattle(battleID, winnerID, loserID);
+                        break;
+                    case 3:
+                        isTie = Integer.parseInt(token);
+                        addServ.addBattle(battleID, winnerID, loserID, isTie);
                         i = -1;
                         break;
                 }
