@@ -19,5 +19,8 @@
       <Button layoutX="447.0" layoutY="118.0" mnemonicParsing="false" onAction="#addChar" text="Add Character" />
       <TextField fx:id="editCharInput" layoutX="419.0" layoutY="154.0" promptText="Character" />
       <Button layoutX="437.0" layoutY="187.0" mnemonicParsing="false" onAction="#removeChar" text="Remove Character" />
+      <TextField fx:id="searchField" layoutX="33.0" layoutY="315.0" promptText="Character" />
+      <ListView fx:id="searchResultList" layoutX="200.0" layoutY="292.0" prefHeight="128.0" prefWidth="200.0" />
+      <Button layoutX="72.0" layoutY="344.0" mnemonicParsing="false" onAction="#searchChar" text="Search" />
    </children>
 </AnchorPane>

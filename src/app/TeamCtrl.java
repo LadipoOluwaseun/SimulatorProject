@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class TeamCtrl extends Controller {
-    public TextField teamName, char1, char2, char3, editCharInput;
+    public TextField teamName, char1, char2, char3, editCharInput, searchField;
     public Label sprocOutput;
-    public ListView currentTeams;
+    public ListView currentTeams, searchResultList;
 
     public TeamCtrl(PassableServices serv) { super(serv); }
 
@@ -47,6 +47,12 @@ public class TeamCtrl extends Controller {
     public void removeChar(ActionEvent event) throws SQLException {
         teamServ.removeCharFromTeam(editCharInput.getText());
         sprocOutput.setText(teamServ.getOutput());
+    }
+
+    public void searchChar(ActionEvent event) {
+        String searchString = searchField.getText();
+        searchResultList.getItems().clear();
+        searchResultList.getItems().addAll(charServ.searchCharacters(searchString));
     }
 
     public void viewPrepare(ActionEvent event) throws IOException {

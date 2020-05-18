@@ -3,6 +3,7 @@ package services;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -113,5 +114,25 @@ public class CharacterService {
             output = "Could not retrieve the health of this character.";
             return -1;
         }
+    }
+
+    public ArrayList<String> searchCharacters(String searchString) {
+        String SQL = "{call search_Characters(?)}";
+        Connection con = dbService.getConnection();
+        try {
+            CallableStatement cs = con.prepareCall(SQL);
+            cs.setObject(1, searchString);
+            cs.execute();
+            SQLWarning warns = cs.getWarnings();
+            if (warns != null) { output = warns.getMessage(); }
+            else { output = ""; }
+            ResultSet rs = cs.getResultSet();
+            ArrayList<String> results = new ArrayList<String>();
+            while (rs.next()) {
+                results.add(rs.getString(1));
+            }
+            return results;
+        } catch (SQLException e) { e.printStackTrace(); }
+        return null;
     }
 }
