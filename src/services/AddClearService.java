@@ -179,15 +179,15 @@ public class AddClearService {
             Thread.sleep(2000);
             System.out.println("Erasing in 1...");
             Thread.sleep(2000);
-            clear("Abilities");
-            clear("Items");
-            clear("Users");
-            clear("Teams");
-            clear("Characters");
+            clear("FoughtBy");
             clear("Battles");
             clear("HasItem");
             clear("KnowsAbility");
-            clear("FoughtBy");
+            clear("Characters");
+            clear("Teams");
+            clear("Abilities");
+            clear("Items");
+            clear("Users");
             System.out.println("Database cleared.");
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -16,7 +16,7 @@ public class ItemService {
 
     public ArrayList<Integer> getItemsOfChar(int charID) {
         ArrayList<Integer> itemIDs = new ArrayList<Integer>();
-        String SQL = "{call get_Items_of_Char(?)}";
+        String SQL = "{call select_Items(?)}";
         Connection con = dbService.getConnection();
         try {
             CallableStatement cs = con.prepareCall(SQL);

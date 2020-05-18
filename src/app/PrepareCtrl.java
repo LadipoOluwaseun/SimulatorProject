@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.CharacterService;
@@ -49,9 +50,14 @@ public class PrepareCtrl extends Controller {
     public void populateDrop2(MouseEvent event) { populateDropDown(event, team2Fld, p2Char); }
 
     public void chooseImport(ActionEvent event) throws FileNotFoundException {
-        File file = fc.showOpenDialog(new Stage());
-        if (file != null) {
-            Parser.parse(file, addServ);
+//        File file = fc.showOpenDialog(new Stage());
+//        if (file != null) {
+//            Parser.parse(file, addServ);
+//        }
+        DirectoryChooser chooser = new DirectoryChooser();
+        File selectedDirectory = chooser.showDialog(new Stage());
+        if (selectedDirectory != null) {
+            Parser.parseInOrder(selectedDirectory, addServ);
         }
     }
 

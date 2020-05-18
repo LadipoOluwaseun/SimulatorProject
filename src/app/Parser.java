@@ -8,7 +8,29 @@ import java.util.Scanner;
 
 public class Parser {
 
-    public static void parse(File file, AddClearService serv) throws FileNotFoundException {
+    public static void parseInOrder(File file, AddClearService serv) throws FileNotFoundException {
+        parse(getFile(file, "Abilities.csv"), serv);
+        parse(getFile(file, "Items.csv"), serv);
+        parse(getFile(file, "Users.csv"), serv);
+        parse(getFile(file, "Teams.csv"), serv);
+        parse(getFile(file, "Characters.csv"), serv);
+        parse(getFile(file, "Battles.csv"), serv);
+        parse(getFile(file, "HasItem.csv"), serv);
+        parse(getFile(file, "KnowsAbility.csv"), serv);
+        parse(getFile(file, "FoughtBy.csv"), serv);
+    }
+
+    private static File getFile(File directory, String name) {
+        for (File file : directory.listFiles()) {
+            System.out.println(file.getName());
+            if (file.getName().equals(name)) {
+                return file;
+            }
+        }
+        return null;
+    }
+
+    private static void parse(File file, AddClearService serv) throws FileNotFoundException {
         Scanner titleScan = new Scanner(file);
         titleScan.useDelimiter(",");
         String title = titleScan.next();

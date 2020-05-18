@@ -25,7 +25,7 @@ public class TeamService {
         nullifyString(char1);
         nullifyString(char2);
         nullifyString(char3);
-        String SQL = "{call create_Team(?,?,?,?,?)}";
+        String SQL = "{call insert_Team(?,?,?,?,?)}";
         Connection con = dbService.getConnection();
         try {
             CallableStatement cs = con.prepareCall(SQL);
@@ -51,7 +51,7 @@ public class TeamService {
     }
 
     public void removeCharFromTeam(String charName) throws SQLException {
-        String SQL = "{call remove_Char_from_Team(?)}";
+        String SQL = "{call remove_from_Team(?)}";
         Connection con = dbService.getConnection();
         CallableStatement cs = con.prepareCall(SQL);
         cs.setObject(1, charName);
