@@ -102,7 +102,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Label prefHeight="40.0" prefWidth="300.0" text="Error messages go here. Error messages go here. Error messages go here. Error messages go here. Error messages go here. Error messages go here. Error messages go here. " wrapText="true" />
+                        <Label fx:id="errorLabel" prefHeight="40.0" prefWidth="300.0" text="Error messages go here. Error messages go here. Error messages go here. Error messages go here. Error messages go here. Error messages go here. Error messages go here. " wrapText="true" />
                      </children>
                   </VBox>
                </center>
