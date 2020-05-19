@@ -25,6 +25,7 @@ public class PrepareCtrl extends Controller {
     public ChoiceBox p1Char, p2Char;
     public TextField user1Fld, user2Fld, team1Fld, team2Fld;
     public FileChooser fc;
+    public Label errorLabel;
 
     public PrepareCtrl(PassableServices serv) {
         super(serv);
@@ -61,6 +62,17 @@ public class PrepareCtrl extends Controller {
         }
     }
 
+    public boolean isReady() {
+        boolean check1 = !team1Fld.getText().isEmpty();
+        boolean check2 = !team2Fld.getText().isEmpty();
+        boolean check3 = p1Char.getSelectionModel().getSelectedItem() != null;
+        boolean check4 = p2Char.getSelectionModel().getSelectedItem() != null;
+        if (check1 && check2 && check3 && check4) {
+            return true;
+        }
+        return false;
+    }
+
     //------------------//
     // switching scenes //
     //------------------//
@@ -69,6 +81,10 @@ public class PrepareCtrl extends Controller {
     }
 
     public void viewBattle(ActionEvent event) throws IOException {
+        if (!isReady()) {
+            errorLabel.setText("Enter all the information for the battle first!");
+            return;
+        }
         ArrayList<Integer> charIDs = new ArrayList<Integer>();
         String char1 = p1Char.getSelectionModel().getSelectedItem().toString();
         charIDs.add(charServ.getID(char1));

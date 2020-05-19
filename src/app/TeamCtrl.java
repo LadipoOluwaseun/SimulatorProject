@@ -35,16 +35,37 @@ public class TeamCtrl extends Controller {
     }
 
     public void createTeam(ActionEvent event) {
-        teamServ.addTeam(teamName.getText(), char1.getText(), char2.getText(), char3.getText(), 1);
+        String name = teamName.getText();
+        String c1 = char1.getText();
+        String c2 = char2.getText();
+        String c3 = char3.getText();
+        if (name.isEmpty()) name = null;
+        if (c1.isEmpty()) c1 = null;
+        if (c2.isEmpty()) c2 = null;
+        if (c3.isEmpty()) c3 = null;
+        teamServ.addTeam(name, c1, c2, c3, 1);
         sprocOutput.setText(teamServ.getOutput());
     }
 
     public void addChar(ActionEvent event) throws SQLException {
+        if (currentTeams.getSelectionModel().getSelectedItem() == null) {
+            sprocOutput.setText("Choose a team to add to first!");
+            return;
+        }
+        if (editCharInput.getText().isEmpty()) {
+            sprocOutput.setText("Enter a character's name to add to this team!");
+            return;
+        }
         int teamID = ((IDHolder) currentTeams.getSelectionModel().getSelectedItem()).getID();
         teamServ.addCharToTeam(editCharInput.getText(), teamID);
+        sprocOutput.setText(teamServ.getOutput());
     }
 
     public void removeChar(ActionEvent event) throws SQLException {
+        if (editCharInput.getText().isEmpty()) {
+            sprocOutput.setText("Enter a character's name to remove them from their team!");
+            return;
+        }
         teamServ.removeCharFromTeam(editCharInput.getText());
         sprocOutput.setText(teamServ.getOutput());
     }

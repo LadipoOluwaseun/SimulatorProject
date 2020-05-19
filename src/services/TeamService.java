@@ -21,10 +21,6 @@ public class TeamService {
     //     SETTERS      //
     //------------------//
     public void addTeam(String name, String char1, String char2, String char3, int ID) {
-        nullifyString(name);
-        nullifyString(char1);
-        nullifyString(char2);
-        nullifyString(char3);
         String SQL = "{call insert_Team(?,?,?,?,?)}";
         Connection con = dbService.getConnection();
         try {
@@ -41,13 +37,17 @@ public class TeamService {
         } catch (SQLException e) { e.printStackTrace(); }
     }
 
-    public void addCharToTeam(String charName, int ID) throws SQLException {
+    public void addCharToTeam(String charName, int ID) {
         String SQL = "{call add_Char_to_Team(?,?)}";
         Connection con = dbService.getConnection();
-        CallableStatement cs = con.prepareCall(SQL);
-        cs.setObject(1, charName);
-        cs.setObject(2, ID);
-        cs.execute();
+        try {
+            CallableStatement cs = con.prepareCall(SQL);
+            cs.setObject(1, charName);
+            cs.setObject(2, ID);
+            cs.execute();
+            SQLWarning warns = cs.getWarnings();
+            if (warns != null) { output = warns.getMessage(); }
+        } catch (SQLException e) { e.printStackTrace(); }
     }
 
     public void removeCharFromTeam(String charName) throws SQLException {
@@ -129,7 +129,4 @@ public class TeamService {
         return output;
     }
 
-    public void nullifyString(String str) {
-        if (str.isEmpty()) { str = null; }
-    }
 }
