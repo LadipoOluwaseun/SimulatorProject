@@ -11,12 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.RecordScene">
+<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="400.0">
          <top>
-            <Button mnemonicParsing="false" text="Prepare to Fight" BorderPane.alignment="TOP_LEFT" />
+            <Button mnemonicParsing="false" onAction="#viewPrepare" text="Prepare to Fight" BorderPane.alignment="TOP_LEFT" />
          </top>
          <opaqueInsets>
             <Insets />
@@ -38,7 +37,12 @@
                         <HBox alignment="CENTER" prefHeight="40.0">
                            <children>
                               <Label prefWidth="80.0" text="Character" />
-                              <ChoiceBox fx:id="charBox" focusTraversable="false" onMouseClicked="#populateDrop1" prefHeight="31.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="charBox" focusTraversable="false" onMouseClicked="#populateDropDown" prefHeight="31.0" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="200.0">
+                           <children>
+                              <Button mnemonicParsing="false" text="Get Record" />
                            </children>
                         </HBox>
                      </children>

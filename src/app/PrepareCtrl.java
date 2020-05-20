@@ -80,6 +80,10 @@ public class PrepareCtrl extends Controller {
         changeScene(event, "teamScene.fxml", new TeamCtrl(serv));
     }
 
+    public void viewRecord(ActionEvent event) throws IOException {
+        changeScene(event, "recordScene.fxml", new RecordCtrl(serv));
+    }
+
     public void viewBattle(ActionEvent event) throws IOException {
         if (!isReady()) {
             errorLabel.setText("Enter all the information for the battle first!");

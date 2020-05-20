@@ -102,7 +102,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Label fx:id="errorLabel" prefHeight="40.0" prefWidth="300.0" text="Error messages go here. Error messages go here. Error messages go here. Error messages go here. Error messages go here. Error messages go here. Error messages go here. " wrapText="true" />
+                        <Label fx:id="errorLabel" prefHeight="40.0" prefWidth="300.0" wrapText="true" />
                      </children>
                   </VBox>
                </center>
@@ -114,18 +114,16 @@
                               <Font name="System Bold" size="30.0" />
                            </font>
                         </Label>
-                        <HBox prefHeight="55.0" prefWidth="323.0">
+                        <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#viewTeam" text="View Teams">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
                               </Button>
+                              <Button mnemonicParsing="false" onAction="#viewRecord" text="View Records" />
                            </children>
-                           <StackPane.margin>
-                              <Insets left="15.0" top="15.0" />
-                           </StackPane.margin>
-                        </HBox>
+                        </VBox>
                      </children>
                   </StackPane>
                </top>
