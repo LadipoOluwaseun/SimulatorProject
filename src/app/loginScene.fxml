@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="295.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.LoginCtrl">
+   <children>
+      <Button layoutX="214.0" layoutY="221.0" mnemonicParsing="false" text="Login" />
+      <Label layoutX="50.0" layoutY="82.0" text="Player 1" textFill="#e50404">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+      <PasswordField layoutX="14.0" layoutY="149.0" />
+      <PasswordField layoutX="313.0" layoutY="149.0" />
+      <TextField layoutX="313.0" layoutY="113.0" />
+      <TextField layoutX="14.0" layoutY="113.0" />
+      <Label layoutX="349.0" layoutY="82.0" text="Player 2" textFill="#0a66cf">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="204.0" layoutY="116.0" text="Username">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="208.0" layoutY="152.0" text="Password">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="120.0" layoutY="32.0" text="Who Would Win Simnulator">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -18,6 +18,7 @@ public class ApplicationRunner {
     protected TeamService teamService;
     protected ItemService itemService;
     protected AddClearService addClearService;
+    protected UserService userService;
 
     public void runApplication(String[] args) {
         Properties props = this.loadProperties();
@@ -39,6 +40,7 @@ public class ApplicationRunner {
         this.teamService = new TeamService(dbService);
         this.itemService = new ItemService(dbService);
         this.addClearService = new AddClearService(dbService);
+        this.userService = new UserService(dbService);
     }
 
     public Properties loadProperties() {

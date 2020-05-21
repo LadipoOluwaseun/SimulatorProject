@@ -1,5 +1,7 @@
 package services;
 
+import javafx.scene.control.TextField;
+
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.swing.*;
@@ -28,12 +30,7 @@ public class UserService {
         return true;
     }
 
-    public boolean login(String username, String password) {
-        //TODO: Complete this method.
-        return false;
-    }
-
-    public boolean register(String username, String password) {
+    public boolean addUser(String username, String password) {
         //TODO: Complete this method.
         return false;
     }
