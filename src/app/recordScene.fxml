@@ -42,7 +42,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="200.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Get Record" />
+                              <Button mnemonicParsing="false" onAction="#displayRecord" text="Get Record" />
                            </children>
                         </HBox>
                      </children>

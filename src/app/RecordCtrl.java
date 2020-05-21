@@ -25,6 +25,7 @@ public class RecordCtrl extends Controller {
 
     public ChoiceBox charBox;
     public TextField teamFld;
+    public Label recordLbl;
 
     public RecordCtrl(PassableServices serv) {
         super(serv);
@@ -43,8 +44,10 @@ public class RecordCtrl extends Controller {
         else { charBox.getItems().addAll(chars); }
     }
 
-    public void displayRecord(MouseEvent event) {
-
+    public void displayRecord(ActionEvent event) {
+        String charName = charBox.getSelectionModel().getSelectedItem().toString();
+        String record = charServ.getRecord(charServ.getID(charName));
+        recordLbl.setText(record);
     }
 
     public void viewPrepare(ActionEvent event) throws IOException {

@@ -135,4 +135,22 @@ public class CharacterService {
         } catch (SQLException e) { e.printStackTrace(); }
         return null;
     }
+
+    public String getRecord(int characterID) {
+        String SQL = "{call get_Record(?)}";
+        Connection con = dbService.getConnection();
+        try {
+            CallableStatement cs = con.prepareCall(SQL);
+            cs.setObject(1, characterID);
+            cs.execute();
+            ResultSet rs = cs.getResultSet();
+            while (rs.next()) {
+                String wins = rs.getString(1);
+                String losses = rs.getString(2);
+                String ties = rs.getString(3);
+                return wins + '-' + losses + '-' + ties;
+            }
+        } catch (SQLException e) { e.printStackTrace(); }
+        return null;
+    }
 }
